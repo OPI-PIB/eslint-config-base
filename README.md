@@ -1,9 +1,9 @@
-# @opi-pib/eslint-config-base
+# @opi_pib/eslint-config-base
 
 ## Install
 
 ```
-npm install -D @opi-pib/eslint-config-base
+npm install -D @opi_pib/eslint-config-base
 ```
 
 ### Angular
@@ -19,7 +19,7 @@ ng add @angular-eslint/schematics
 ```
 {
 	"extends": [
-		"@opi-pib/base"
+		"@opi_pib/base"
 	]
 }
 ```
