@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/eslint-config-base",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "ESLint config",
 	"main": "index.js",
 	"keywords": [
@@ -17,6 +17,10 @@
 		"typescript": "~4.8.2"
 	},
 	"peerDependencies": {
-		"eslint": "^8.27.0"
+		"eslint": "^8.28.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/OPI-PIB/eslint-config-base.git"
 	}
 }
