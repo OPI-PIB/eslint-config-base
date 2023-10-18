@@ -1,3 +1,4 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
 	extends: [
 		'./rules/best-practices',
@@ -8,6 +9,7 @@ module.exports = {
 		'./rules/es6',
 		'./rules/imports',
 		'./rules/strict',
+		'prettier',
 	].map(require.resolve),
 	parser: '@typescript-eslint/parser',
 	parserOptions: {

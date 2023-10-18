@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/eslint-config-base",
-	"version": "1.0.11",
+	"version": "1.0.12",
 	"description": "ESLint config",
 	"main": "index.js",
 	"keywords": [
@@ -11,6 +11,7 @@
 	"dependencies": {
 		"@typescript-eslint/parser": "^6.8.0",
 		"confusing-browser-globals": "^1.0.11",
+		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-import": "^2.28.1",
 		"object.assign": "^4.1.4",
 		"object.entries": "^1.1.7",
