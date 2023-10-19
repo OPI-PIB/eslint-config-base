@@ -9,13 +9,12 @@ module.exports = {
 		'./rules/es6',
 		'./rules/imports',
 		'./rules/strict',
-		'plugin:prettier/recommended',
-		'prettier',
+		'./rules/prettier',
 	].map(require.resolve),
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 2022,
 	},
-	plugins: ['@typescript-eslint', 'prettier'],
+	plugins: ['@typescript-eslint'],
 	rules: {},
 };
