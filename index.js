@@ -9,7 +9,6 @@ module.exports = {
 		'./rules/es6',
 		'./rules/imports',
 		'./rules/strict',
-		'./rules/prettier',
 	].map(require.resolve),
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
