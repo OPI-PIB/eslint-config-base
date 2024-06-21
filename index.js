@@ -12,7 +12,7 @@ module.exports = {
 	].map(require.resolve),
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		ecmaVersion: 2022,
+		ecmaVersion: 'latest',
 	},
 	plugins: ['@typescript-eslint'],
 	rules: {},
