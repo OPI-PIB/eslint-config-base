@@ -1,19 +1,17 @@
-/** @type {import("eslint").Linter.Config} */
-module.exports = {
+// @ts-check
+const eslint = require('@eslint/js');
+const tseslint = require('typescript-eslint');
+const assertions = require('@opi_pib/eslint-plugin-assertions');
+
+module.exports = tseslint.config({
+	files: ['**/*.ts'],
 	extends: [
-		'./rules/best-practices',
-		'./rules/errors',
-		'./rules/node',
-		'./rules/style',
-		'./rules/variables',
-		'./rules/es6',
-		'./rules/imports',
-		'./rules/strict',
-	].map(require.resolve),
-	parser: '@typescript-eslint/parser',
-	parserOptions: {
-		ecmaVersion: 'latest',
+		eslint.configs.recommended,
+		...tseslint.configs.recommended,
+		...tseslint.configs.stylistic,
+	],
+	plugins: {
+		'@opi_pib/assertions': assertions,
 	},
-	plugins: ['@typescript-eslint'],
 	rules: {},
-};
+});
