@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/eslint-config-base",
-	"version": "9.3.0",
+	"version": "9.4.0",
 	"description": "ESLint config",
 	"main": "index.js",
 	"keywords": [
@@ -11,7 +11,7 @@
 	"dependencies": {
 		"@eslint/js": "^9.0.0",
 		"@opi_pib/eslint-plugin-assertions": "^9.0.0",
-		"angular-eslint": "^19.0.0",
+		"angular-eslint": "^20.0.0",
 		"eslint-plugin-import": "^2.0.0",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.0.0"
