@@ -1,20 +1,45 @@
 {
 	"name": "@opi_pib/eslint-config-base",
-	"version": "9.4.0",
+	"version": "9.4.1",
 	"description": "ESLint config",
-	"main": "index.js",
+	"main": "src/index.mjs",
+	"type": "module",
+	"files": [
+		"src",
+		"LICENSE",
+		"README.md"
+	],
+	"exports": {
+		".": "./src/index.mjs",
+		"./js": "./src/js.mjs",
+		"./ts": "./src/ts.mjs"
+	},
+	"engines": {
+		"node": ">=24.0.0",
+		"npm": ">=10.8.0"
+	},
+	"scripts": {
+		"test": "vitest --run",
+		"lint:prettier": "prettier --write ."
+	},
+	"prettier": "@opi_pib/prettier-config-base",
 	"keywords": [
-		"eslint config"
+		"eslint",
+		"config"
 	],
 	"author": "Dawid Lubowiecki",
 	"license": "MIT",
 	"dependencies": {
-		"@eslint/js": "^9.0.0",
+		"@eslint/js": "^9.36.0",
 		"@opi_pib/eslint-plugin-assertions": "^9.0.0",
-		"angular-eslint": "^20.0.0",
-		"eslint-plugin-import": "^2.0.0",
-		"typescript": "^5.0.0",
-		"typescript-eslint": "^8.0.0"
+		"@typescript-eslint/eslint-plugin": "^8.0.0",
+		"@typescript-eslint/parser": "^8.0.0",
+		"eslint-plugin-import": "^2.0.0"
+	},
+	"devDependencies": {
+		"@opi_pib/prettier-config-base": "^1.0.0",
+		"eslint": "^9.0.0",
+		"vitest": "^3.0.0"
 	},
 	"peerDependencies": {
 		"eslint": "^9.0.0"
