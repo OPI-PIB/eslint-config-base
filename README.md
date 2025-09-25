@@ -33,19 +33,23 @@ export default config;
 eslint.config.mjs
 
 ```
-import config from '@opi_pib/eslint-config-base/ts';
+import js from '@opi_pib/eslint-config-base';
+import ts from '@opi_pib/eslint-config-base/ts';
 
 /** @type {import("eslint").Linter.Config} */
-export default {
-	...config,
-	languageOptions: {
-		...config.languageOptions,
-		parserOptions: {
-			...config.languageOptions.parserOptions,
-			project: './tsconfig.eslint.json'
+export default [
+	js,
+	{
+		...ts,
+		languageOptions: {
+			...ts.languageOptions,
+			parserOptions: {
+				...ts.languageOptions.parserOptions,
+				project: './tsconfig.eslint.json'
+			}
 		}
 	}
-};
+];
 ```
 
 tsconfig.eslint.json
