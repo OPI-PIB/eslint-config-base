@@ -30,7 +30,13 @@ export default {
 				pathGroupsExcludedImportTypes: ['builtin']
 			}
 		],
+		'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
 		'no-undef': 'off',
-		'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }]
+		'no-constant-condition': ['error', { checkLoops: true }],
+		'no-extra-semi': 'error',
+		'no-inner-declarations': 'error',
+		'no-mixed-spaces-and-tabs': 'error',
+		'no-new-symbol': 'error',
+		'no-shadow': 'error'
 	}
 };
