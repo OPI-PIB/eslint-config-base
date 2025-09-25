@@ -28,6 +28,36 @@ import config from '@opi_pib/eslint-config-base/ts';
 export default config;
 ```
 
+### Angular
+
+eslint.config.mjs
+
+```
+import config from '@opi_pib/eslint-config-base/ts';
+
+/** @type {import("eslint").Linter.Config} */
+export default {
+	...config,
+	languageOptions: {
+		...config.languageOptions,
+		parserOptions: {
+			...config.languageOptions.parserOptions,
+			project: './tsconfig.eslint.json'
+		}
+	}
+};
+```
+
+tsconfig.eslint.json
+
+```
+{
+	"extends": "./tsconfig.app.json",
+	"include": ["**/*.ts"],
+	"exclude": []
+}
+```
+
 ## VS Code settings.json
 
 ```
