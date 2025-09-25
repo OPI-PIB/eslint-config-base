@@ -8,7 +8,7 @@ import eslintConfig from '../src/ts.mjs';
 
 const tempTsConfigPath = resolve('./tsconfig.temp.json');
 
-const tempFile = resolve('./temp-test-file.ts');
+const tempFilePath = resolve('./temp-test-file.ts');
 
 beforeAll(() => {
 	writeFileSync(
@@ -24,27 +24,21 @@ beforeAll(() => {
 		})
 	);
 
-	eslintConfig.forEach((entry) => {
-		if (entry.languageOptions?.parserOptions?.project) {
-			entry.languageOptions.parserOptions.project = tempTsConfigPath;
-		}
-	});
+	eslintConfig.languageOptions.parserOptions.project = tempTsConfigPath;
 });
 
 afterAll(() => {
 	unlinkSync(tempTsConfigPath);
-	unlinkSync(tempFile);
+	unlinkSync(tempFilePath);
 });
 
 const eslint = new ESLint({
 	overrideConfig: eslintConfig
 });
 
-const [, tsConfig] = eslintConfig;
-
 async function lintCode(code) {
-	writeFileSync(tempFile, code);
-	const results = await eslint.lintFiles(tempFile);
+	writeFileSync(tempFilePath, code);
+	const results = await eslint.lintFiles(tempFilePath);
 	return results[0].messages;
 }
 
@@ -173,7 +167,7 @@ describe('TypeScript ESLint config', () => {
 	});
 
 	it('@typescript-eslint/no-unsafe-function-type', () => {
-		expect(tsConfig.rules['@typescript-eslint/no-unsafe-function-type']).toBe('error');
+		expect(eslintConfig.rules['@typescript-eslint/no-unsafe-function-type']).toBe('error');
 	});
 
 	it('@typescript-eslint/no-unused-vars', async () => {
@@ -183,7 +177,7 @@ describe('TypeScript ESLint config', () => {
 	});
 
 	it('@typescript-eslint/no-var-requires', () => {
-		expect(tsConfig.rules['@typescript-eslint/no-var-requires']).toBe('error');
+		expect(eslintConfig.rules['@typescript-eslint/no-var-requires']).toBe('error');
 	});
 
 	it('@typescript-eslint/no-wrapper-object-types', async () => {
@@ -193,7 +187,7 @@ describe('TypeScript ESLint config', () => {
 	});
 
 	it('@typescript-eslint/prefer-as-const', () => {
-		expect(tsConfig.rules['@typescript-eslint/prefer-as-const']).toBe('error');
+		expect(eslintConfig.rules['@typescript-eslint/prefer-as-const']).toBe('error');
 	});
 
 	it('@typescript-eslint/prefer-namespace-keyword', async () => {
@@ -262,7 +256,7 @@ describe('TypeScript ESLint config', () => {
 
 		rules.forEach((rule) => {
 			it(rule, () => {
-				expect(tsConfig.rules[rule]).toBe('off');
+				expect(eslintConfig.rules[rule]).toBe('off');
 			});
 		});
 	});
