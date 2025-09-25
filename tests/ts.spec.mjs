@@ -8,6 +8,8 @@ import eslintConfig from '../src/ts.mjs';
 
 const tempTsConfigPath = resolve('./tsconfig.temp.json');
 
+const tempFile = resolve('./temp-test-file.ts');
+
 beforeAll(() => {
 	writeFileSync(
 		tempTsConfigPath,
@@ -31,6 +33,7 @@ beforeAll(() => {
 
 afterAll(() => {
 	unlinkSync(tempTsConfigPath);
+	unlinkSync(tempFile);
 });
 
 const eslint = new ESLint({
@@ -40,12 +43,8 @@ const eslint = new ESLint({
 const [, tsConfig] = eslintConfig;
 
 async function lintCode(code) {
-	const filePath = `./test-${Date.now()}-${Math.random()}.ts`;
-	const tempFile = resolve(filePath);
-
 	writeFileSync(tempFile, code);
-	const results = await eslint.lintText(code, { filePath });
-	unlinkSync(tempFile);
+	const results = await eslint.lintFiles(tempFile);
 	return results[0].messages;
 }
 
