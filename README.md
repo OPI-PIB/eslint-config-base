@@ -33,12 +33,16 @@ export default config;
 eslint.config.mjs
 
 ```
-import js from '@opi_pib/eslint-config-base';
-import ts from '@opi_pib/eslint-config-base/ts';
+import { js, ts } from '@opi_pib/eslint-config-base';
 
-/** @type {import("eslint").Linter.Config} */
+const ignores = ['.angular/**', 'dist/**', 'src/api/**', 'test-results/**'];
+
+/** @type {import("eslint").Linter.Config[]} */
 export default [
-	js,
+	{
+		...js,
+		ignores
+	},
 	{
 		...ts,
 		languageOptions: {
@@ -47,9 +51,11 @@ export default [
 				...ts.languageOptions.parserOptions,
 				project: './tsconfig.eslint.json'
 			}
-		}
+		},
+		ignores
 	}
 ];
+
 ```
 
 tsconfig.eslint.json
