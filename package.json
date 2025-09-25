@@ -20,7 +20,7 @@
 	},
 	"scripts": {
 		"prepare": "husky",
-		"test": "vitest --run --no-file-parallelism"
+		"test": "vitest --run --maxConcurrency=1"
 	},
 	"lint-staged": {
 		"*": "prettier -u -w"
