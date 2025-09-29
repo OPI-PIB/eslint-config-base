@@ -1,5 +1,5 @@
 import { unlinkSync, writeFileSync } from 'fs';
-import assert from 'node:assert';
+import { ok, strictEqual } from 'node:assert/strict';
 import { after, before, describe, it } from 'node:test';
 import { resolve } from 'path';
 
@@ -50,7 +50,7 @@ describe('TypeScript ESLint config', () => {
 				`;
 		const messages = await lintCode(code);
 		const importErrors = messages.filter((msg) => msg.ruleId && msg.ruleId.startsWith('import/'));
-		assert(importErrors.length > 0);
+		ok(importErrors.length > 0);
 	});
 
 	it('should catch invalid type assertions', async () => {
@@ -59,7 +59,7 @@ describe('TypeScript ESLint config', () => {
 	  `;
 		const messages = await lintCode(code);
 		const typeErrors = messages.filter((msg) => msg.ruleId && msg.ruleId.startsWith('@typescript-eslint/'));
-		assert(typeErrors.length > 0);
+		ok(typeErrors.length > 0);
 	});
 
 	it('should catch TS-specific type-checking rules', async () => {
@@ -68,7 +68,7 @@ describe('TypeScript ESLint config', () => {
     `;
 		const messages = await lintCode(code);
 		const typeCheckErrors = messages.filter((msg) => msg.ruleId && msg.ruleId.startsWith('@typescript-eslint/'));
-		assert(typeCheckErrors.length > 0);
+		ok(typeCheckErrors.length > 0);
 	});
 
 	it('@typescript-eslint/adjacent-overload-signatures', async () => {
@@ -82,7 +82,7 @@ describe('TypeScript ESLint config', () => {
 			a.foo('');
 		`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/adjacent-overload-signatures'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/adjacent-overload-signatures'));
 	});
 
 	it('@typescript-eslint/ban-ts-comment', async () => {
@@ -91,139 +91,139 @@ describe('TypeScript ESLint config', () => {
 			const x: number = 'hello';
 		`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/ban-ts-comment'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/ban-ts-comment'));
 	});
 
 	it('@typescript-eslint/no-array-constructor', async () => {
 		const code = `const arr = new Array();`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-array-constructor'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-array-constructor'));
 	});
 
 	it('@typescript-eslint/no-empty-function', async () => {
 		const code = `function foo() {}`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-empty-function'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-empty-function'));
 	});
 
 	it('@typescript-eslint/no-empty-interface', async () => {
 		const code = `interface A {}`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-empty-interface'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-empty-interface'));
 	});
 
 	it('@typescript-eslint/no-empty-object-type', async () => {
 		const code = `type A = {}`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-empty-object-type'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-empty-object-type'));
 	});
 
 	it('@typescript-eslint/no-inferrable-types', async () => {
 		const code = `const x: number = 5;`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-inferrable-types'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-inferrable-types'));
 	});
 
 	it('@typescript-eslint/no-loss-of-precision', async () => {
 		const code = `const x: number = 9007199254740993;`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-loss-of-precision'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-loss-of-precision'));
 	});
 
 	it('@typescript-eslint/no-misused-new', async () => {
 		const code = `interface Foo { new (): Foo; }`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-misused-new'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-misused-new'));
 	});
 
 	it('@typescript-eslint/no-namespace', async () => {
 		const code = `namespace A {}`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-namespace'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-namespace'));
 	});
 
 	it('@typescript-eslint/no-non-null-asserted-optional-chain', async () => {
 		const code = `const x = obj?.prop!;`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-non-null-asserted-optional-chain'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-non-null-asserted-optional-chain'));
 	});
 
 	it('@typescript-eslint/no-shadow', async () => {
 		const code = `let x = 1; { let x = 2; }`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-shadow'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-shadow'));
 	});
 
 	it('@typescript-eslint/no-this-alias', async () => {
 		const code = `const self = this;`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-this-alias'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-this-alias'));
 	});
 
 	it('@typescript-eslint/no-unnecessary-type-constraint', async () => {
 		const code = `function foo<T extends unknown>(x: T) {}`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-unnecessary-type-constraint'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-unnecessary-type-constraint'));
 	});
 
 	it('@typescript-eslint/no-unsafe-function-type', () => {
-		assert.strictEqual(eslintConfig.rules['@typescript-eslint/no-unsafe-function-type'], 'error');
+		strictEqual(eslintConfig.rules['@typescript-eslint/no-unsafe-function-type'], 'error');
 	});
 
 	it('@typescript-eslint/no-unused-vars', async () => {
 		const code = `const unused = 1;`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-unused-vars'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-unused-vars'));
 	});
 
 	it('@typescript-eslint/no-var-requires', () => {
-		assert.strictEqual(eslintConfig.rules['@typescript-eslint/no-var-requires'], 'error');
+		strictEqual(eslintConfig.rules['@typescript-eslint/no-var-requires'], 'error');
 	});
 
 	it('@typescript-eslint/no-wrapper-object-types', async () => {
 		const code = `const x: Number = 5;`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-wrapper-object-types'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/no-wrapper-object-types'));
 	});
 
 	it('@typescript-eslint/prefer-as-const', () => {
-		assert.strictEqual(eslintConfig.rules['@typescript-eslint/prefer-as-const'], 'error');
+		strictEqual(eslintConfig.rules['@typescript-eslint/prefer-as-const'], 'error');
 	});
 
 	it('@typescript-eslint/prefer-namespace-keyword', async () => {
 		const code = `module A {}`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/prefer-namespace-keyword'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/prefer-namespace-keyword'));
 	});
 
 	it('@typescript-eslint/triple-slash-reference', async () => {
 		const code = `/// <reference path="file.ts" />`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === '@typescript-eslint/triple-slash-reference'));
+		ok(messages.some((m) => m.ruleId === '@typescript-eslint/triple-slash-reference'));
 	});
 
 	it('no-var', async () => {
 		const code = `var x = 1;`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === 'no-var'));
+		ok(messages.some((m) => m.ruleId === 'no-var'));
 	});
 
 	it('prefer-const', async () => {
 		const code = `let y = 2;`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === 'prefer-const'));
+		ok(messages.some((m) => m.ruleId === 'prefer-const'));
 	});
 
 	it('prefer-rest-params', async () => {
 		const code = `function foo() { return arguments[0] as number; } foo();`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === 'prefer-rest-params'));
+		ok(messages.some((m) => m.ruleId === 'prefer-rest-params'));
 	});
 
 	it('prefer-spread', async () => {
 		const code = `const numbers = [1,2,3]; Math.max.apply(Math, numbers);`;
 		const messages = await lintCode(code);
-		assert.ok(messages.some((m) => m.ruleId === 'prefer-spread'));
+		ok(messages.some((m) => m.ruleId === 'prefer-spread'));
 	});
 
 	describe('turned off rules:', () => {
@@ -256,7 +256,7 @@ describe('TypeScript ESLint config', () => {
 
 		rules.forEach((rule) => {
 			it(rule, () => {
-				assert.strictEqual(eslintConfig.rules[rule], 'off');
+				strictEqual(eslintConfig.rules[rule], 'off');
 			});
 		});
 	});
