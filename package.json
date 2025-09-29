@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/eslint-config-base",
-	"version": "9.4.4",
+	"version": "9.4.5",
 	"description": "ESLint config",
 	"main": "src/index.mjs",
 	"type": "module",
@@ -20,7 +20,7 @@
 	},
 	"scripts": {
 		"prepare": "husky",
-		"test": "vitest --run --maxConcurrency=1"
+		"test": "node --test tests/**/*.spec.mjs"
 	},
 	"lint-staged": {
 		"*": "prettier -u -w"
@@ -43,8 +43,7 @@
 		"@opi_pib/prettier-config-base": "^1.0.0",
 		"eslint": "^9.0.0",
 		"husky": "^9.0.0",
-		"lint-staged": "^16.0.0",
-		"vitest": "^3.0.0"
+		"lint-staged": "^16.0.0"
 	},
 	"peerDependencies": {
 		"eslint": "^9.0.0"
